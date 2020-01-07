@@ -1,9 +1,9 @@
 <div class="head w-100 d-flex justify-content-center">
-  <button mat-raised-button (click) = 'toPosts()'>Popular posts</button>
+  <button mat-raised-button (click)="toPosts()">Popular posts</button>
 </div>
 
 <div class="posts" #mostLikedPosts>
-  <div class="no-list" *ngIf="!posts | async">
+  <div class="no-list" *ngIf="!posts">
     No posts in category :(
   </div>
 

@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
     this.userInfo = this.loginService.user;
   }
 
-  private onLogout() {
+  public onLogout() {
     this.loginService
       .logout()
       .pipe(take(1))
