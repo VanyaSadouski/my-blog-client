@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LoginService } from "@core/services";
 import { CategoryService } from "@core/services/category/category.service";
 import { Subject } from "rxjs";
-import { take, takeUntil } from "rxjs/operators";
+import { pluck, take, takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "app-category-list",
@@ -23,7 +23,11 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getCategories();
+    this.route.data
+      .pipe(pluck("categoryList"), takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.categories = data;
+      });
     this.userInfo = this.loginService.user;
   }
 
