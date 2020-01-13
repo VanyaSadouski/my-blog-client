@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "environments/environment";
 import { Observable, of } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 
-const apiUrl = "https://my-blog-angular.herokuapp.com/api/category/";
+const apiUrl = `${environment.apiPrefix}/category/`;
 
 @Injectable({
   providedIn: "root"
@@ -25,26 +26,23 @@ export class CategoryService {
 
   updateCategory(id: any, category: any): Observable<any> {
     const url = `${apiUrl}/${id}`;
-    return this.http.put(url, category).pipe(
-      tap(_ => console.log(`updated category id=${id}`)),
-      catchError(this.handleError<any>("updateCategory"))
-    );
+    return this.http
+      .put(url, category)
+      .pipe(catchError(this.handleError<any>("updateCategory")));
   }
 
   getCategory(id: any): Observable<any> {
     const url = `${apiUrl}/${id}`;
-    return this.http.get<any>(url).pipe(
-      tap(_ => console.log(`fetched category by id=${id}`)),
-      catchError(this.handleError<any>(`getCategory id=${id}`))
-    );
+    return this.http
+      .get<any>(url)
+      .pipe(catchError(this.handleError<any>(`getCategory id=${id}`)));
   }
 
   deleteCategory(id: any): Observable<any> {
     const url = `${apiUrl}/${id}`;
-    return this.http.delete<any>(url).pipe(
-      tap(_ => console.log(`deleted category id=${id}`)),
-      catchError(this.handleError<any>("deleteCategory"))
-    );
+    return this.http
+      .delete<any>(url)
+      .pipe(catchError(this.handleError<any>("deleteCategory")));
   }
 
   private handleError<T>(operation = "operation", result?: any) {

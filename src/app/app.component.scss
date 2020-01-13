@@ -1,0 +1,11 @@
+.main-container {
+  &__spinner {
+    ::ng-deep.overlay {
+      position: fixed !important;
+    }
+
+    ::ng-deep.la-ball-clip-rotate {
+      top: 50% !important;
+    }
+  }
+}

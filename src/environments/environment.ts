@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiPrefix: ""
+  apiPrefix: "https://my-blog-angular.herokuapp.com/api"
 };
 
 /*

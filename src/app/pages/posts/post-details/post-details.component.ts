@@ -6,7 +6,7 @@ import { IPost } from "@core/models/post";
 import { LoginService, PostService } from "@core/services";
 import { FormErrorStateMatcher } from "@core/utils";
 import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { pluck, takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "app-post-details",
@@ -37,7 +37,13 @@ export class PostDetailsComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get("postId");
 
     this.createForm();
-    this.getPostInfo();
+
+    this.route.data
+      .pipe(pluck("post"), takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.post = data;
+        this.likes = data.likedByUsers.length;
+      });
 
     this.postService
       .isLikedPostByUser(this.loginService.user.username, this.id)

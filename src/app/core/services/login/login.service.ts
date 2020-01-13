@@ -1,10 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { EventEmitter, Injectable, Output } from "@angular/core";
 import { Router } from "@angular/router";
+import { environment } from "environments/environment";
 import { Observable, of } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 
-const apiUrl = "https://my-blog-angular.herokuapp.com/api/auth/";
+const apiUrl = `${environment.apiPrefix}/auth/`;
 
 @Injectable({
   providedIn: "root"
@@ -40,14 +41,12 @@ export class LoginService {
 
   register(data: any): Observable<any> {
     return this.http.post<any>(apiUrl + "register", data).pipe(
-      tap(() => this.log("register")),
       catchError(this.handleError("register", []))
     );
   }
 
   private handleError<T>(operation = "operation", result?: any) {
     return (error: any): Observable<any> => {
-      console.error(error);
       this.log(`${operation} failed: ${error.message}`);
 
       return of(result);

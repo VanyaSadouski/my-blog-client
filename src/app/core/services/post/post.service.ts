@@ -2,10 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { IComment } from "@core/models/comment";
 import { IPost } from "@core/models/post";
+import { environment } from "environments/environment";
 import { Observable, of } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 
-const apiUrl = "https://my-blog-angular.herokuapp.com/api/post/";
+const apiUrl = `${environment.apiPrefix}/post/`;
 
 @Injectable({
   providedIn: "root"
@@ -14,26 +15,23 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<IPost[]> {
-    return this.http.get<IPost[]>(apiUrl).pipe(
-      tap(_ => this.log("fetched Posts")),
-      catchError(this.handleError("getPosts", []))
-    );
+    return this.http
+      .get<IPost[]>(apiUrl)
+      .pipe(catchError(this.handleError("getPosts", [])));
   }
 
   getPostsByCategory(category: string): Observable<IPost[]> {
     const url = `${apiUrl}${category}`;
-    return this.http.get<IPost[]>(url).pipe(
-      tap(_ => this.log("fetched Posts")),
-      catchError(this.handleError("getPosts", []))
-    );
+    return this.http
+      .get<IPost[]>(url)
+      .pipe(catchError(this.handleError("getPosts", [])));
   }
 
   getPost(id: any): Observable<IPost> {
     const url = `${apiUrl}/post/${id}`;
-    return this.http.get<IPost>(url).pipe(
-      tap(_ => console.log(`fetched post by id=${id}`)),
-      catchError(this.handleError<IPost>(`getPost id=${id}`))
-    );
+    return this.http
+      .get<IPost>(url)
+      .pipe(catchError(this.handleError<IPost>(`getPost id=${id}`)));
   }
 
   getMostLikedPosts() {
@@ -61,10 +59,9 @@ export class PostService {
   }
 
   addPost(post: Partial<IPost>): Observable<IPost> {
-    return this.http.post<IPost>(apiUrl, post).pipe(
-      tap((prod: IPost) => console.log(`added post w/ id=${post._id}`)),
-      catchError(this.handleError<IPost>("addPost"))
-    );
+    return this.http
+      .post<IPost>(apiUrl, post)
+      .pipe(catchError(this.handleError<IPost>("addPost")));
   }
 
   isLikedPostByUser(user: string, id: string) {
@@ -76,23 +73,20 @@ export class PostService {
 
   updatePost(id: any, post: IPost): Observable<any> {
     const url = `${apiUrl}/${id}`;
-    return this.http.put(url, post).pipe(
-      tap(_ => console.log(`updated post id=${id}`)),
-      catchError(this.handleError<any>("updatePost"))
-    );
+    return this.http
+      .put(url, post)
+      .pipe(catchError(this.handleError<any>("updatePost")));
   }
 
   deletePost(id: any): Observable<IPost> {
     const url = `${apiUrl}/${id}`;
-    return this.http.delete<IPost>(url).pipe(
-      tap(_ => console.log(`deleted post id=${id}`)),
-      catchError(this.handleError<IPost>("deletePost"))
-    );
+    return this.http
+      .delete<IPost>(url)
+      .pipe(catchError(this.handleError<IPost>("deletePost")));
   }
 
   private handleError<T>(operation = "operation", result?: any) {
     return (error: any): Observable<any> => {
-      console.error(error);
       this.log(`${operation} failed: ${error.message}`);
 
       return of(result);
