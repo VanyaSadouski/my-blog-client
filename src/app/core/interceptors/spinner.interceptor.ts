@@ -23,7 +23,6 @@ export class SpinnerInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.spinner.show();
     this.count++;
-    console.log("hui");
     return next.handle(req).pipe(
       finalize(() => {
         this.count--;
