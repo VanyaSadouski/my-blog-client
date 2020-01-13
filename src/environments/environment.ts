@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiPrefix: "https://my-blog-angular.herokuapp.com/api"
+  apiPrefix: "http://localhost:3000/api"
 };
 
 /*
