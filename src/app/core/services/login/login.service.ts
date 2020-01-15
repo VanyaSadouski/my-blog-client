@@ -41,7 +41,9 @@ export class LoginService {
 
   register(data: any): Observable<any> {
     return this.http
-      .post<any>(apiUrl + "register", data)
+      .post<any>(apiUrl + "register", data, {
+        headers: { skip: "true" }
+      })
       .pipe(catchError(this.handleError("register", [])));
   }
 

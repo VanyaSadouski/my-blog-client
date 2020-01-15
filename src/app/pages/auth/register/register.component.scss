@@ -17,4 +17,19 @@
       cursor: pointer;
     }
   }
+
+  .info {
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 2.2rem;
+
+    .success {
+      color: $main-color;
+    }
+
+    .error {
+      color: $error-color;
+    }
+  }
 }

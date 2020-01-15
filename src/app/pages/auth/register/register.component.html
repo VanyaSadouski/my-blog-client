@@ -10,7 +10,7 @@
         <mat-form-field class="w-100">
           <input
             matInput
-            placeholder="Логин*"
+            placeholder="Login*"
             formControlName="username"
             [errorStateMatcher]="formErrorStateMatcher"
           />
@@ -35,7 +35,7 @@
           <input
             matInput
             [type]="'text'"
-            placeholder="Пароль*"
+            placeholder="Password*"
             formControlName="password"
             type="password"
             [errorStateMatcher]="formErrorStateMatcher"
@@ -53,6 +53,14 @@
 
         <div class="w-100 d-flex justify-content-end">
           <button mat-raised-button type="submit">Register</button>
+        </div>
+        <div class="info">
+          <span class="error" *ngIf="!isRegistered && attempt">{{
+            errorText
+          }}</span>
+          <span class="success" *ngIf="isRegistered && attempt">{{
+            successText
+          }}</span>
         </div>
       </form>
     </mat-card-content>

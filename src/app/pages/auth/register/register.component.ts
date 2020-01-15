@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit {
   public form: FormGroup;
   public formErrorStateMatcher = new FormErrorStateMatcher();
   public isHidden = true;
+  public isRegistered = true;
+  public errorText: string;
+  public successText = "Check your email :)";
+  public attempt = false;
 
   constructor(
     private fb: FormBuilder,
@@ -47,11 +51,19 @@ export class RegisterComponent implements OnInit {
       .pipe(take(1))
       .subscribe(
         res => {
-          this.router.navigate(["login"]);
+          this.attempt = true;
+
+          if (!res.success) {
+            this.isRegistered = false;
+            this.errorText = res.msg;
+            return;
+          } else {
+            this.isRegistered = true;
+            this.successText = res.msg;
+          }
         },
         err => {
-          console.log(err);
-          alert(err.error);
+          this.isRegistered = false;
         }
       );
   }
