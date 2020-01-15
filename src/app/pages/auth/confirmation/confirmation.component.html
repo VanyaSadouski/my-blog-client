@@ -1,0 +1,7 @@
+<div class="confirmation">
+  <mat-card class="w-50 mx-auto">
+    <span *ngIf="!confirmationMessage">Please wait</span>
+    <span *ngIf="confirmationMessage">{{ confirmationMessage }}</span>
+    <div class="timer">{{ time }}</div>
+  </mat-card>
+</div>

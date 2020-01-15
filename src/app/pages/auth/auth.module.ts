@@ -6,6 +6,7 @@ import { MaterialModule } from "@core/material";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { RegisterComponent } from "./register/register.component";
     AuthRoutingModule,
     MaterialModule
   ],
-  declarations: [LoginComponent, RegisterComponent]
+  declarations: [LoginComponent, RegisterComponent, ConfirmationComponent]
 })
 export class AuthModule {}

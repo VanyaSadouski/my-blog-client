@@ -40,9 +40,9 @@ export class LoginService {
   }
 
   register(data: any): Observable<any> {
-    return this.http.post<any>(apiUrl + "register", data).pipe(
-      catchError(this.handleError("register", []))
-    );
+    return this.http
+      .post<any>(apiUrl + "register", data)
+      .pipe(catchError(this.handleError("register", [])));
   }
 
   private handleError<T>(operation = "operation", result?: any) {
