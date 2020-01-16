@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from "@core/material";
+import { TranslateModule } from "@ngx-translate/core";
 import { CategoryAddComponent } from "./category-add";
 import { CategoryListComponent } from "./category-list";
 import { CategoryRoutingModule } from "./category-routing.module";
@@ -13,7 +14,8 @@ import { CategoryRoutingModule } from "./category-routing.module";
     RouterModule,
     MaterialModule,
     CategoryRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [CategoryAddComponent, CategoryListComponent]
 })

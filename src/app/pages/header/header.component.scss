@@ -41,3 +41,46 @@
 .mat-button {
   color: white !important;
 }
+
+.ng-select.custom {
+  min-width: 65px;
+  font-size: 1.06rem;
+  z-index: 102;
+
+  ::ng-deep .ng-select-container {
+    padding: 0.3rem;
+    background-color: transparent;
+    height: 100%;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.493);
+
+    ::ng-deep .ng-value-container {
+      padding-right: 0.5rem;
+      color: white;
+    }
+  }
+
+  ::ng-deep .ng-dropdown-panel {
+    background: black;
+    color: white;
+    padding-left: 0.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.493);
+    border-top: none;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  ::ng-deep .ng-arrow-wrapper:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    background: url("/assets/select-arrow.svg") 85% 50% no-repeat;
+    transition: 0.25s;
+    text-rendering: auto;
+  }
+
+  ::ng-deep .ng-arrow-wrapper .ng-arrow {
+    display: none;
+  }
+}

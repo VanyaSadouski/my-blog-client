@@ -1,6 +1,6 @@
 <mat-card class="section-padding-x">
   <mat-card-header class="mb-4">
-    <mat-card-title> Create category</mat-card-title>
+    <mat-card-title> {{ "CREATE_CATEGORY" | translate }}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
@@ -14,7 +14,7 @@
           [errorStateMatcher]="formErrorStateMatcher"
         />
         <mat-error *ngIf="form.get('catName').hasError('required')">
-          required field
+          {{ "REQUIRED_FIELD" | translate }}
         </mat-error>
       </mat-form-field>
 
@@ -27,7 +27,7 @@
           [errorStateMatcher]="formErrorStateMatcher"
         />
         <mat-error *ngIf="form.get('catDesc').hasError('required')">
-          required field
+          {{ "REQUIRED_FIELD" | translate }}
         </mat-error>
       </mat-form-field>
 
@@ -43,7 +43,7 @@
 
       <div class="d-flex justify-content-end mt-5">
         <button class="btn-actions mr-3" type="submit" mat-raised-button>
-          Save
+          {{ "SAVE" | translate }}
         </button>
 
         <button
@@ -52,7 +52,7 @@
           type="button"
           mat-raised-button
         >
-          Cancel
+          {{ "CANCEL" | translate }}
         </button>
       </div>
     </form>

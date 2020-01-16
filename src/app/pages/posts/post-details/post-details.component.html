@@ -43,18 +43,18 @@
             [errorStateMatcher]="formErrorStateMatcher"
           ></textarea>
           <mat-error *ngIf="form.get('comment').hasError('required')">
-            required field
+            {{ "REQUERED_FIELD" | translate }}
           </mat-error>
         </mat-form-field>
 
         <button class="btn-actions mr-3" type="submit" mat-raised-button>
-          Add comment
+          {{ "ADD_COMMENT" | translate }}
         </button>
       </form>
     </div>
     <div class="comments-block__list">
       <div class="no-comments" *ngIf="!post?.comments.length">
-        No comments
+        {{ "NO_COMMENTS" | translate }}
       </div>
       <div class="comments" *ngIf="post?.comments.length">
         <ng-container *ngFor="let comment of post?.comments">

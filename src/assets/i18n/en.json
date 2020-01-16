@@ -1,0 +1,17 @@
+{
+  "MENU": "Menu",
+  "CATEGORIES": "Categories",
+  "CREATE_CATEGORY": "Create category",
+  "CREATE_POST": "Create post",
+  "POPULAR_POSTS": "Popular posts",
+  "NO_CATEGORIES": "No categories",
+  "NO_POSTS": "No posts",
+  "EDIT": "Edit",
+  "DELETE": "Delete",
+  "SAVE": "Save",
+  "REQUIRED_FIELD": "Requered field",
+  "CANCEL": "Cancel",
+  "ADD_COMMENT": "Add comment",
+  "NO_COMMENTS": "No comments",
+  "POSTS": "Posts"
+}

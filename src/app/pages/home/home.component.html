@@ -1,10 +1,12 @@
 <div class="head w-100 d-flex justify-content-center">
-  <button mat-raised-button (click)="toPosts()">Popular posts</button>
+  <button mat-raised-button (click)="toPosts()">
+    {{ "POPULAR_POSTS" | translate }}
+  </button>
 </div>
 
 <div class="posts" #mostLikedPosts>
   <div class="no-list" *ngIf="!posts">
-    No posts in category :(
+    {{ "NO_POSTS" | translate }}
   </div>
 
   <mat-card-content class="list section-padding-x" *ngIf="posts | async">

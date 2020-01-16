@@ -15,25 +15,25 @@
         mat-button
         [matMenuTriggerFor]="belowMenu"
       >
-        Menu
+        {{ "MENU" | translate }}
       </button>
       <mat-menu #belowMenu="matMenu" yPosition="below">
         <button mat-menu-item [routerLink]="['/category/list']">
-          Categories
+          {{ "CATEGORIES" | translate }}
         </button>
         <button
           mat-menu-item
           [routerLink]="['/posts/create']"
           *ngIf="userInfo.role === 'admin'"
         >
-          Create post
+          {{ "CREATE_POST" | translate }}
         </button>
         <button
           [routerLink]="['/category/create']"
           mat-menu-item
           *ngIf="userInfo.role === 'admin'"
         >
-          Create category
+          {{ "CREATE_CATEGORY" | translate }}
         </button>
       </mat-menu>
       <div class="blog-header__logout-btn" matTooltip="Logout">
@@ -41,6 +41,20 @@
           input
         </i>
       </div>
+
+      <form [formGroup]="headerForm" class="ml-3 d-none d-md-block">
+        <ng-select
+          [searchable]="false"
+          class="small custom lang"
+          [items]="langOptions"
+          bindValue="value"
+          bindLabel="label"
+          formControlName="langOptionsControl"
+          bindLabel="label"
+          [clearable]="false"
+        >
+        </ng-select>
+      </form>
     </div>
   </div>
 </mat-toolbar>

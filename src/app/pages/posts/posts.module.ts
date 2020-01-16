@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from "@core/material";
+import { TranslateModule } from "@ngx-translate/core";
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { SharedModule } from "app/shared/shared.module";
 import { PostDetailsComponent } from "./post-details/post-details.component";
@@ -19,7 +20,8 @@ import { PostsRoutingModule } from "./posts-routing.module";
     PostsRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    EditorModule
+    EditorModule,
+    TranslateModule
   ],
   declarations: [
     PostsAddComponent,
