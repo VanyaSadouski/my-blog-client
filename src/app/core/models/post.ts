@@ -12,4 +12,5 @@ export interface IPost {
   likes: number;
   likedByUsers: string[];
   comments: IComment[];
+  postLang: string;
 }
