@@ -1,10 +1,10 @@
 <div class="section-padding-x category">
   <mat-card-header class="mb-4">
-    <mat-card-title> Posts list</mat-card-title>
+    <mat-card-title> {{ "POSTS" | translate }}</mat-card-title>
   </mat-card-header>
 
   <div class="no-list" *ngIf="!posts?.length">
-    No posts in category :(
+    {{ "NO_POSTS" | translate }}
   </div>
 
   <mat-card-content class="list" *ngIf="posts?.length">

@@ -19,6 +19,7 @@ export class PostsAddComponent implements OnInit, OnDestroy {
   public isEditPage: boolean;
   public categories;
   public id: string;
+  public postLanguage: string;
   public init = {
     height: 500,
     plugins: [
@@ -42,6 +43,14 @@ export class PostsAddComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.createForm();
+
+    this.form
+      .get("postTitle")
+      .valueChanges.pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.postLanguage = /^[а-яА-ЯёЁ]+$/.test(data) ? "ru" : "en";
+      });
+
     this.route.data
       .pipe(pluck("categories"), takeUntil(this.destroy$))
       .subscribe(data => {
@@ -85,7 +94,7 @@ export class PostsAddComponent implements OnInit, OnDestroy {
     }
     if (this.isEditPage) {
       this.postService
-        .updatePost(this.id, this.form.value)
+        .updatePost(this.id, this.form.value, this.postLanguage)
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           res => {
@@ -99,7 +108,7 @@ export class PostsAddComponent implements OnInit, OnDestroy {
         );
     } else {
       this.postService
-        .addPost(this.form.value)
+        .addPost(this.form.value, this.postLanguage)
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           res => {

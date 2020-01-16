@@ -1,12 +1,11 @@
 <div class="section-padding-x category">
   <mat-card-header class="mb-4">
-    <mat-card-title> Category list</mat-card-title>
+    <mat-card-title> {{ "CATEGORIES" | translate }}</mat-card-title>
   </mat-card-header>
 
-    <div class="no-list"
-         *ngIf="!categories?.length">
-      No categories :(
-    </div>
+  <div class="no-list" *ngIf="!categories?.length">
+    {{ "NO_CATEGORIES" | translate }}
+  </div>
 
   <mat-card-content class="list" *ngIf="categories?.length">
     <div class="list-item" *ngFor="let item of categories">

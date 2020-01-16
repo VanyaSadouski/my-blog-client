@@ -34,8 +34,8 @@ export class PostService {
       .pipe(catchError(this.handleError<IPost>(`getPost id=${id}`)));
   }
 
-  getMostLikedPosts() {
-    const url = `${apiUrl}/most-liked-list`;
+  getMostLikedPosts(lang: string) {
+    const url = `${apiUrl}/most-liked-list/${lang}`;
     return this.http
       .get<IPost[]>(url)
       .pipe(catchError(this.handleError<IPost[]>("getMostLikedPosts")));
@@ -58,7 +58,11 @@ export class PostService {
     return this.http.get(url).pipe(catchError(this.handleError("like", [])));
   }
 
-  addPost(post: Partial<IPost>): Observable<IPost> {
+  addPost(post: Partial<IPost>, postLang: string): Observable<IPost> {
+    post = {
+      postLang,
+      ...post
+    };
     return this.http
       .post<IPost>(apiUrl, post)
       .pipe(catchError(this.handleError<IPost>("addPost")));
@@ -71,8 +75,12 @@ export class PostService {
       .pipe(catchError(this.handleError("isLikedPostByUser", [])));
   }
 
-  updatePost(id: any, post: IPost): Observable<any> {
+  updatePost(id: any, post: IPost, postLang: string): Observable<any> {
     const url = `${apiUrl}/${id}`;
+    post = {
+      postLang,
+      ...post
+    };
     return this.http
       .put(url, post)
       .pipe(catchError(this.handleError<any>("updatePost")));
